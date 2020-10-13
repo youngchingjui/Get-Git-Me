@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import Card from './Card'
 
 const ViewContainer = styled.div`
   margin-top: 50px;
@@ -19,6 +20,8 @@ const ViewBox = styled.div`
   background: #eff1f3;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   border-radius: 8px;
+
+  ${({ isOnHover }) => isOnHover && `background: red;`}
 `
 
 const EmptyViewText = styled.div`
@@ -29,11 +32,38 @@ const EmptyViewText = styled.div`
 `
 
 const View = () => {
+  const [issueList, setIssueList] = useState([<Card />, <Card />])
+  const [isOnHover, setIsOnHover] = useState(false)
+
+  const handleDragEnter = (e) => {
+    e.preventDefault()
+    setIsOnHover(true)
+  }
+  const handleDragLeave = (e) => {
+    e.preventDefault()
+    setIsOnHover(false)
+  }
+  const handleDragOver = (e) => {
+    e.preventDefault()
+  }
+  const handleDrop = (e) => {
+    console.log(e.dataTransfer)
+    e.preventDefault()
+    e.stopPropagation()
+  }
   return (
-    <ViewContainer>
+    <ViewContainer
+      onDragOver={handleDragOver}
+      onDrop={handleDrop}
+      onDragEnter={handleDragEnter}
+      onDragLeave={handleDragLeave}
+    >
       <ViewTitle>Priority Issues</ViewTitle>
-      <ViewBox>
-        <EmptyViewText>Drag your issues here</EmptyViewText>
+      <ViewBox isOnHover={isOnHover}>
+        {issueList.length < 1 && (
+          <EmptyViewText>Drag your issues here</EmptyViewText>
+        )}
+        {issueList.map((i) => i)}
       </ViewBox>
     </ViewContainer>
   )

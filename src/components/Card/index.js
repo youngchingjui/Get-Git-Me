@@ -46,8 +46,12 @@ const IssueOptionsIcon = styled.img`
 `
 
 const Card = () => {
+  const handleDragStart = (e) => {
+    e.dataTransfer.effectAllowed = 'copy'
+  }
+
   return (
-    <CardContainer draggable>
+    <CardContainer draggable onDragStart={handleDragStart}>
       <IssueStatusIcon src={OpenIssueIcon} alt="Open Issue Icon" />
       <TextContainer>
         <IssueTitle>This is a test issue</IssueTitle>
