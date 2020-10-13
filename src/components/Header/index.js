@@ -4,6 +4,7 @@ import logo from './Logo.png'
 
 const HeaderWrapper = styled.div`
   width: 100%;
+  padding: 10px;
 `
 
 const LogoImage = styled.img`

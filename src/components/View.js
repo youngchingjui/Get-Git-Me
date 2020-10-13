@@ -14,7 +14,7 @@ const ViewTitle = styled.div`
 const ViewBox = styled.div`
   height: 300px;
   width: 100%;
-  display: flexbox;
+  display: flex;
   box-shadow: 5px 10px #888888;
   background: #eff1f3;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
