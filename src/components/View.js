@@ -20,8 +20,9 @@ const ViewBox = styled.div`
   background: #eff1f3;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   border-radius: 8px;
+  border: 1px solid transparent;
 
-  ${({ isOnHover }) => isOnHover && `background: red;`}
+  ${({ isOnHover }) => isOnHover && `border: 1px dashed #313628;`}
 `
 
 const EmptyViewText = styled.div`
@@ -50,6 +51,7 @@ const View = () => {
     console.log(e.dataTransfer)
     e.preventDefault()
     e.stopPropagation()
+    setIsOnHover(false)
   }
   return (
     <ViewContainer
