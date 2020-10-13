@@ -21,8 +21,10 @@ const BucketBox = styled.div`
   border-radius: 8px;
   display: flex;
   height: 200px;
-  padding: 25px 25px 0 25px;
-  justify-content: space-around;
+  padding: 10px 20px 0 20px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  overflow: auto;
 `
 
 const Bucket = () => {
@@ -30,6 +32,7 @@ const Bucket = () => {
     <BucketContainer>
       <BucketTitle>Issue Bucket</BucketTitle>
       <BucketBox>
+        <Card />
         <Card />
         <Card />
         <Card />
