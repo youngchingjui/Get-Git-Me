@@ -11,6 +11,7 @@ const CardContainer = styled.div`
   display: flex;
   align-items: flex-start;
   margin: 10px;
+  cursor: grab;
 `
 
 const IssueStatusIcon = styled.img`
@@ -22,11 +23,13 @@ const TextContainer = styled.div`
   width: 100%;
   margin-top: 10px;
 `
+
 const IssueTitle = styled.div`
   font-family: Montserrat-SemiBold;
   font-size: 14px;
   color: #2d77d9;
 `
+
 const IssueDescription = styled.span`
   font-family: Montserrat-SemiBold;
   font-size: 12px;
@@ -44,7 +47,7 @@ const IssueOptionsIcon = styled.img`
 
 const Card = () => {
   return (
-    <CardContainer>
+    <CardContainer draggable>
       <IssueStatusIcon src={OpenIssueIcon} alt="Open Issue Icon" />
       <TextContainer>
         <IssueTitle>This is a test issue</IssueTitle>
