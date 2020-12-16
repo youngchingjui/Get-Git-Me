@@ -33,7 +33,10 @@ const EmptyViewText = styled.div`
 `
 
 const View = () => {
-  const [issueList, setIssueList] = useState([<Card />, <Card />])
+  const [issueList, setIssueList] = useState([
+    <Card pointerEvents={false} />,
+    <Card pointerEvents={false} />,
+  ])
   const [isOnHover, setIsOnHover] = useState(false)
 
   const handleDragEnter = (e) => {
@@ -54,14 +57,15 @@ const View = () => {
     setIsOnHover(false)
   }
   return (
-    <ViewContainer
-      onDragOver={handleDragOver}
-      onDrop={handleDrop}
-      onDragEnter={handleDragEnter}
-      onDragLeave={handleDragLeave}
-    >
+    <ViewContainer>
       <ViewTitle>Priority Issues</ViewTitle>
-      <ViewBox isOnHover={isOnHover}>
+      <ViewBox
+        isOnHover={isOnHover}
+        onDragOver={handleDragOver}
+        onDrop={handleDrop}
+        onDragEnter={handleDragEnter}
+        onDragLeave={handleDragLeave}
+      >
         {issueList.length < 1 && (
           <EmptyViewText>Drag your issues here</EmptyViewText>
         )}
