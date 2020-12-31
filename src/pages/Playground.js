@@ -1,8 +1,8 @@
 import React from 'react'
-import { Container } from '../components/Container'
+import Example from '../components/Playground/Example'
 
 const Playground = () => {
-  return <Container />
+  return <Example />
 }
 
 export default Playground
