@@ -1,7 +1,6 @@
 import { useState, useRef } from 'react'
-import { clamp, distance } from 'popmotion'
+import { clamp } from 'popmotion'
 import move from 'array-move'
-import { getIndexOfMin } from '../../functions/getMin'
 
 export const usePositionReorder = (initialState) => {
   const [order, setOrder] = useState(initialState)
@@ -23,7 +22,9 @@ export const usePositionReorder = (initialState) => {
   return [order, updatePosition, updateOrder]
 }
 
-const margin = 20 // This margin needs to match space between cells exactly. TODO: Optimize for safer handling
+// This margin needs to match space between cells exactly.
+// TODO: Optimize for safer handling
+const margin = 20
 
 export const findIndex = (i, currentBox, positions) => {
   let target = i
@@ -63,22 +64,21 @@ export const findIndex = (i, currentBox, positions) => {
       return { ...el, i }
     })
 
-    // Return only row above
-    const targetRow = indexedPositions.filter(
-      (el) => el.top + el.height === top - margin
+    // Get box directly above
+    const boxesAbove = indexedPositions.filter(
+      (el) => el.left === left && el.top < top
     )
+    const boxAbove = boxesAbove[boxesAbove.length - 1]
+    if (boxAbove === undefined) return target
 
-    // Get index of closest cell
-    const closestIndex = getIndexOfMin(
-      targetRow.map((el) =>
-        distance(el.left + el.width / 2, currentBox.x.center)
-      )
-    )
+    // Return box to right if slightly right of center, else return box above
+    if (boxAbove.left + boxAbove.width / 2 < currentBox.x.center) {
+      return boxAbove.i + 1
+    } else if (boxAbove.left + boxAbove.width / 2 >= currentBox.x.center) {
+      return boxAbove.i
+    }
 
-    if (targetRow[closestIndex] === undefined) return target
-
-    // Return index of closest cell
-    return targetRow[closestIndex].i
+    return target
   }
 
   // If current going to row below
@@ -88,22 +88,21 @@ export const findIndex = (i, currentBox, positions) => {
       return { ...el, i }
     })
 
-    // Return only row below
-    const targetRow = indexedPositions.filter(
-      (el) => el.top === bottom + margin
+    // Get box directly above
+    const boxesBelow = indexedPositions.filter(
+      (el) => el.left === left && el.top > top
     )
+    const boxBelow = boxesBelow[0]
+    if (boxBelow === undefined) return target
 
-    // Get index of closest cell
-    const closestIndex = getIndexOfMin(
-      targetRow.map((el) =>
-        distance(el.left + el.width / 2, currentBox.x.center)
-      )
-    )
+    // Return box to left if slightly left of center, else return box below
+    if (boxBelow.left + boxBelow.width / 2 <= currentBox.x.center) {
+      return boxBelow.i
+    } else if (boxBelow.left + boxBelow.width / 2 > currentBox.x.center) {
+      return boxBelow.i - 1
+    }
 
-    if (targetRow[closestIndex] === undefined) return target
-
-    // Return index of closest cell
-    return targetRow[closestIndex].i
+    return target
   }
 
   return clamp(0, positions.length, target)
