@@ -1,9 +1,14 @@
 import React from 'react'
+import Bucket from '../components/Bucket'
+import Header from '../components/Header'
+import View from '../components/View'
 
 const Dashboard = () => {
   return (
     <div>
-      <h2>Dashboard</h2>
+      <Header />
+      <View />
+      <Bucket />
     </div>
   )
 }

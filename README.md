@@ -13,6 +13,10 @@ In the project directory, you can run:
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+This project runs on two subdomains: one of them is the `dashboard` subdomain.
+You'll have to setup some local DNS settings on your config file, but after it's done, you can go to
+dashboard.getgitmelocalhost.com:3000 to view the dashboard.
+
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
