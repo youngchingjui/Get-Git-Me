@@ -10,7 +10,6 @@ const CardContainer = styled.div`
   background: white;
   display: flex;
   align-items: flex-start;
-  margin: 10px;
   cursor: grab;
   ${({ hidePointerEvents }) => !hidePointerEvents && `pointer-events: none;`}
 `
@@ -46,7 +45,7 @@ const IssueOptionsIcon = styled.img`
   margin: 10px;
 `
 
-const Card = ({ pointerEvents }) => {
+const Card = ({ pointerEvents, border }) => {
   const handleDragStart = (e) => {
     e.dataTransfer.effectAllowed = 'copy'
   }
@@ -56,6 +55,7 @@ const Card = ({ pointerEvents }) => {
       draggable
       onDragStart={handleDragStart}
       hidePointerEvents={pointerEvents}
+      style={{ border: `1px solid ${border}` }}
     >
       <IssueStatusIcon src={OpenIssueIcon} alt="Open Issue Icon" />
       <TextContainer>
