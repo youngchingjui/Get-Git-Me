@@ -41,6 +41,26 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+## Continuous Integration / Continuous Development (CI/CD)
+
+### Landing Page (static HTML / Webflow)
+
+Address:
+
+- https://www.getgitme.com
+- https://getgitme.com
+
+Updates to the landing page are managed by AWS Amplify (Singapore). To update the landing page, drag the website files onto AWS Amplify's page directly. We have not hooked it up to an S3 bucket yet; we can do that later.
+
+### Auth + Dashboard subdomains (React)
+
+Addresses:
+
+- https://auth.getgitme.com
+- https://dashboard.getgitme.com
+
+CI/CD updates are managed by AWS Amplify. Once changes are pushed to `master` branch on Github, AWS Amplify (Singapore) will automatically bring those updates to the above domains.
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
