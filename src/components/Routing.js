@@ -1,7 +1,8 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import useSubdomain from '../hooks/useSubdomain'
-import Auth from '../pages/Auth'
+import Auth from '../pages/Auth/Auth'
+import Callback from '../pages/Auth/Callback'
 import Dashboard from '../pages/Dashboard'
 
 const Routing = () => {
@@ -14,9 +15,14 @@ const Routing = () => {
         </Route>
       )}
       {subdomain === 'auth' && (
-        <Route exact path="/">
-          <Auth />
-        </Route>
+        <>
+          <Route exact path="/callback">
+            <Callback />
+          </Route>
+          <Route exact path="/">
+            <Auth />
+          </Route>
+        </>
       )}
     </Switch>
   )
