@@ -6,7 +6,7 @@ const Auth = () => {
   return (
     <div>
       <h2>Login</h2>
-      <form action={'http://github.com/login/oauth/authorize'}>
+      <form action={'https://github.com/login/oauth/authorize'}>
         <input type="hidden" name="client_id" value={client_id} />
         <input type="hidden" name="scope" value={encodeURI(scopes.join(' '))} />
         <input type="submit" value="Login with Github" />
